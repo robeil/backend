@@ -9,3 +9,16 @@
 #    password: 29229c19
 #    hikari:
 #      max-lifetime: 20000
+
+
+url: jdbc:postgresql://localhost:5432/test
+
+dialect:  org.hibernate.dialect.PostgreSQLDialect
+
+sql:
+  init:
+    mode: always
+
+  password: robeilaregawi
+  username: postgres
+  url: jdbc:postgresql://localhost:5432/portfolio_db
