@@ -27,7 +27,7 @@ public class ContactController {
 
 
     @EventListener(ApplicationReadyEvent.class)
-    public void sendEmail(){
+    public void sendEmail() {
         senderService.sendEmail(
                 "aregawirobeil1@gmail.com",
                 "From portfolio message",
@@ -35,25 +35,25 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<Contact>  addNewContact(@RequestBody Contact contact){
-      var newContact = contactService.addNewContact(contact);
-     return ResponseEntity.ok(newContact);
+    public ResponseEntity<Contact> addNewContact(@RequestBody Contact contact) {
+        //sending message each time get a new contact
+        sendEmail();
+        var newContact = contactService.addNewContact(contact);
+        return ResponseEntity.ok(newContact);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contact>  getNewContact(@PathVariable Long id){
+    public ResponseEntity<Contact> getNewContact(@PathVariable Long id) {
 
-    var getNewContact =  contactService.getTheNewContact(id);
-        logger.info("Retrieving user :- "  + getNewContact.getFullName());
-        //sending message each time get a new contact
-        sendEmail();
+        var getNewContact = contactService.getTheNewContact(id);
+        logger.info("Retrieving user :- " + getNewContact.getFullName().toLowerCase());
         return ResponseEntity.ok(getNewContact);
     }
 
     @GetMapping
-    public ResponseEntity<List<Contact>> getAllContacts(){
+    public ResponseEntity<List<Contact>> getAllContacts() {
         var allContacts = contactService.getAllContacts();
-        logger.info("Retrieving all the users :- "  + allContacts.toArray());
+        logger.info("Retrieving all the users :- " + allContacts.toArray());
         return ResponseEntity.ok(allContacts);
     }
 }
