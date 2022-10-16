@@ -31,7 +31,8 @@ public class ContactController {
         senderService.sendEmail(
                 "aregawirobeil1@gmail.com",
                 "From portfolio message",
-                "Some one send you message from your portfolio");
+                "Hi Robeil, " +
+                        " Some one send you message from your portfolio");
     }
 
     @PostMapping
